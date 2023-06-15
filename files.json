@@ -1,0 +1,28 @@
+{
+    "files": [
+        {
+            "name": "files.json",
+            "desc": "Files"
+        },
+        {
+            "name": "files.py",
+            "desc": "Files"
+        },
+        {
+            "name": "files.html",
+            "desc": "Files"
+        },
+        {
+            "name": "x.php",
+            "desc": "X"
+        },
+        {
+            "name": "xx.php",
+            "desc": "Xx"
+        },
+        {
+            "name": "file_list.json",
+            "desc": "File_list"
+        }
+    ]
+}

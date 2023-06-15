@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Scanner</title>
+    <style>
+        body {
+            font-family: Verdana, Arial, sans-serif;
+        }
+
+        .file-link {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #F0F0F0;
+            border: 1px solid #CCCCCC;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333333;
+        }
+
+        .file-link:hover {
+            background-color: #E0E0E0;
+        }
+
+        ul.file-list {
+            list-style-type: none; /* Remove the dot at the start of each item */
+            padding-left: 0; /* Remove the default left padding */
+        }
+    </style>
+</head>
+<body>
+    <h1>File Scanner</h1>
+    <ul id="fileList" class="file-list"></ul>
+
+    <script>
+        // Function to scan files in the current folder
+        function scanFiles() {
+            var fileListElement = document.getElementById("fileList");
+
+            // Clear existing file list
+            fileListElement.innerHTML = "";
+
+            // Get all files in the current folder
+            fetch("files.json")
+                .then(response => response.json())
+                .then(data => {
+                    // Display file names as download links
+                    data.files.forEach(file => {
+                        var liElement = document.createElement("li");
+                        var linkElement = document.createElement("a");
+                        linkElement.textContent = file.desc;
+                        linkElement.href = encodeURIComponent(file.name);
+                        linkElement.setAttribute("download", file.name);
+                        linkElement.classList.add("file-link"); // Add the file-link class
+                        liElement.appendChild(linkElement);
+                        fileListElement.appendChild(liElement);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error scanning files:", error);
+                });
+        }
+
+        // Call the scanFiles function when the page loads
+        window.addEventListener("load", scanFiles);
+    </script>
+</body>
+</html>
